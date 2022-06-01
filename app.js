@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const app = express();
 const bodyParser = require('body-parser');
 require('dotenv').config();
+var cors = require('cors');
 
 // import routes
 const postsRoute = require('./routes/posts');
@@ -16,6 +17,9 @@ mongoose.connect(process.env.DB_CONNECTION, () => {
 });
 
 // Middlewares
+
+app.use(cors());
+
 app.use('/posts', () => {
   console.log('This is a middleware running');
 });
